@@ -28,7 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Rutas
 // Aquí irán tus archivos de rutas (cuando los crees)
 app.use('/', require('./routes/index.routes')); // Ruta de ejemplo (por defecto)
-
+app.use('/', require('./routes/auth.routes'));
 // Servidor en escucha
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
