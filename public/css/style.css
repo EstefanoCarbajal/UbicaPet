@@ -37,13 +37,20 @@ input {
 
                               /* Login */
 .formulario {
-  width: 400px;
-  height: 500px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 250px;
+  height: auto;
   background-color: #fff0d8;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 90px 90px rgba(0, 0, 0, 0.1);
-  
+  box-sizing: border-box;
+}
+.logologin {
+  width: 220px;
+  height: 170px;
+  margin: 0 auto 10px;  
 }
 .boton {
   background-color: #a9c19f;
@@ -104,3 +111,9 @@ input {
   color: #e58c5f;
 }
 
+.mensaje-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
