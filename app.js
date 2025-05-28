@@ -1,34 +1,36 @@
-// Importaciones necesarias
 const express = require('express');
-const dotenv = require('dotenv');
 const path = require('path');
 const morgan = require('morgan');
-
-// Configuración de variables de entorno
-dotenv.config();
-
-// Inicialización de la app
+require('dotenv').config();
+const session = require('express-session');
 const app = express();
 
 // Conexión a la base de datos
 require('./config/db');
 
-// Middlewares
+// Middlewares para leer datos de formularios y JSON
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Middleware de sesión
+app.use(session({
+  secret: 'ubicapet-secret', // Usa un secreto seguro en producción
+  resave: false,
+  saveUninitialized: false
+}));
+
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Motor de plantillas (ej: EJS, si usas otro puedes cambiarlo)
+// Motor de plantillas
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Rutas
-// Aquí irán tus archivos de rutas (cuando los crees)
-app.use('/', require('./routes/index.routes')); // Ruta de ejemplo (por defecto)
+app.use('/', require('./routes/index.routes'));
 app.use('/', require('./routes/auth.routes'));
+
 // Servidor en escucha
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

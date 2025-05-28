@@ -117,3 +117,44 @@ input {
   margin-top: -10px;
   margin-bottom: 15px;
 }
+
+
+
+.botones-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.dashboard-btn {
+  display: block;
+  width: 85%;
+  text-align: center;
+  background-color: #a9c19f;
+  color: #333;
+  border: 2px solid #666;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 1.05rem;
+  text-decoration: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+}
+
+.dashboard-btn:hover {
+  background-color: #92a98a;
+}
+.formulario-dashboard {
+  max-width: 120px;
+  min-width: 220px;
+}
+
+.titulos{
+  font-size: 3rem;
+    margin-bottom: 30px;
+    color: #e58c5f;
+  margin-block-start: 0.00em;
+    margin-block-end: 0.00em;
+}

@@ -1,28 +1,36 @@
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UbicaPet - Iniciar sesión</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body class="login">
     <div class="container">
-      <img src="img/fondo.png" alt="fondo" class="fondo" />
+      <img src="/img/fondo.png" alt="fondo" class="fondo" />
       <div class="formulario">
-        <img src="img/logo.png" class="logologin"/>
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" placeholder="Ingrese su usuario" />
-        <label for="password">Contraseña:</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Ingrese su contraseña"
-        />
-        <button class="boton"><a href="dashboard.html"> Log in </a></button>
-        <br><a href="/register" class="crear-cuenta">Crear cuenta</a>
-        
+        <img src="/img/logo.png" class="logologin" />
+        <form id="formLogin" action="/login" method="POST">
+          <label for="usuario">Correo electrónico:</label>
+          <input
+            type="text"
+            id="usuario"
+            name="usuario"
+            placeholder="Ingrese su correo"
+          />
+          <label for="password">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Ingrese su contraseña"
+          />
+          <p id="mensajeError" class="mensaje-error"></p>
+          <button type="submit" class="boton">Iniciar sesión</button>
+          <br /><a href="/register" class="crear-cuenta">Crear cuenta</a>
+        </form>
       </div>
     </div>
+    <script src="/js/login.js"></script>
   </body>
 </html>
-

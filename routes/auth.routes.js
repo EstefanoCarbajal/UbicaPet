@@ -1,18 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
+
 // filepath: routes/auth.routes.js
 router.get('/login', (req, res) => {
   res.render('auth/login');
 });
 
+router.post('/login', authController.loginUser);
+
+
 router.get('/register', (req, res) => {
   res.render('auth/register');
 });
-
+// Ruta para manejar el registro de usuarios
 router.post('/register', authController.registerUser);
+
+// Ruta para manejar el inicio de sesión de usuarios
 
 
 
 module.exports = router;
-
