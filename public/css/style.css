@@ -152,9 +152,8 @@ input {
 }
 
 .titulos{
-  font-size: 3rem;
-    margin-bottom: 30px;
-    color: #e58c5f;
+  font-size: 1.6rem;
+  margin-bottom: 30px;
   margin-block-start: 0.00em;
-    margin-block-end: 0.00em;
+  margin-block-end: 0.00em;
 }
