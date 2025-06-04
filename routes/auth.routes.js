@@ -7,6 +7,7 @@ router.get('/login', (req, res) => {
   res.render('auth/login');
 });
 
+// Ruta para manejar el inicio de sesión de usuarios
 router.post('/login', authController.loginUser);
 
 
@@ -15,8 +16,6 @@ router.get('/register', (req, res) => {
 });
 // Ruta para manejar el registro de usuarios
 router.post('/register', authController.registerUser);
-
-// Ruta para manejar el inicio de sesión de usuarios
 
 
 

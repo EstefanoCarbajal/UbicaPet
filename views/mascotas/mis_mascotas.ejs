@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UbicaPet - Mis Mascotas</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body class="login">
+  <div class="container">
+    <img src="/img/fondo.png" alt="fondo" class="fondo" />
+    <div class="formulario" style="height: auto; padding-bottom: 30px;">
+      <img src="/img/logo.png" class="logologin"/>
+      <h2 class="titulo">Mis Mascotas</h2>
+
+      <% if (mascotas.length === 0) { %>
+        <p>No has registrado mascotas aún.</p>
+      <% } else { %>
+        <ul style="list-style: none; padding: 0;">
+          <% mascotas.forEach(mascota => { %>
+            <li style="margin-bottom: 20px; background-color: #f5ead0; padding: 15px; border-radius: 10px;">
+              <strong><%= mascota.nombre %></strong> - <%= mascota.raza %> <br/>
+              <img src="/uploads/<%= mascota.foto %>" alt="Foto de mascota" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px; margin-top: 10px;" />
+              <div style="margin-top: 10px;">
+                <a class="boton" href="/mascotas/editar/<%= mascota.id %>">Editar</a>
+                <!-- Cambia el enlace de eliminar por un formulario POST -->
+                <form action="/mascotas/eliminar/<%= mascota.id %>" method="POST" style="display:inline;">
+                  <button class="boton salir" type="submit" onclick="return confirm('¿Estás seguro que deseas eliminar esta mascota?')">Eliminar</button>
+                </form>
+                <a class="boton" href="/mascotas/ver_qr/<%= mascota.id %>" target="_blank">Ver QR</a>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <a href="/dashboard" class="crear-cuenta">← Volver al dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

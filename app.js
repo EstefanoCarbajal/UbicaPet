@@ -4,6 +4,7 @@ const morgan = require('morgan');
 require('dotenv').config();
 const session = require('express-session');
 const app = express();
+const mascotaRoutes = require('./routes/mascotas.routes');
 
 // Conexión a la base de datos
 require('./config/db');
@@ -30,6 +31,9 @@ app.set('views', path.join(__dirname, 'views'));
 // Rutas
 app.use('/', require('./routes/index.routes'));
 app.use('/', require('./routes/auth.routes'));
+
+app.use('/mascotas', require('./routes/mascotas.routes'));
+
 
 // Servidor en escucha
 const PORT = process.env.PORT || 3000;

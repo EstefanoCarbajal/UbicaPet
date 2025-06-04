@@ -1,0 +1,23 @@
+
+
+<div class="contenedor">
+  <h2>Código QR de <%= mascota.nombre %></h2>
+  
+  <% if (qrUrl) { %>
+    <img src="<%= qrUrl %>" alt="Código QR de la mascota" class="qr-img" />
+  <% } else { %>
+    <p>No se encontró el código QR para esta mascota.</p>
+  <% } %>
+
+  <a href="/dashboard" class="boton">Volver al Dashboard</a>
+</div>
+
+
+<style>
+  .qr-img {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+  }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Mascota - UbicaPet</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="login">
+  <div class="container">
+    <img src="/img/fondo.png" alt="fondo" class="fondo" />
+    <div class="formulario">
+      <img src="/img/logo.png" class="logologin" />
+      <h3>Editar Mascota</h3>
+
+      <form action="/mascotas/editar/<%= mascota.id %>" method="POST" enctype="multipart/form-data">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="<%= mascota.nombre %>" required />
+
+        <label for="raza">Raza:</label>
+        <input type="text" name="raza" id="raza" value="<%= mascota.raza %>" />
+
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" id="edad" min="0" value="<%= mascota.edad %>" />
+
+        <label for="color">Color:</label>
+        <input type="text" name="color" id="color" value="<%= mascota.color %>" />
+
+        <label for="foto">Foto:</label>
+        <input type="file" name="foto" id="foto" accept="image/*" />
+        <% if (mascota.foto) { %>
+          <div>
+            <img src="/uploads/<%= mascota.foto %>" alt="Foto actual" style="width:80px; margin-top:10px;" />
+            <p>Foto actual</p>
+          </div>
+        <% } %>
+
+        <button class="boton" type="submit">Guardar Cambios</button>
+      </form>
+
+      <a href="/dashboard" class="crear-cuenta">Volver al inicio</a>
+    </div>
+  </div>
+</body>
+</html>
+
