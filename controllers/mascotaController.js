@@ -8,19 +8,37 @@ exports.mostrarFormulario = (req, res) => {
 };
 
 // Controlador para registrar una nueva mascota
+const QRCode = require('qrcode');
+
 exports.registrarMascota = async (req, res) => {
   const { nombre, raza, edad, color } = req.body;
-  const foto = req.file ? req.file.filename : null;
   const id_usuario = req.session.usuario.id;
+  const foto = req.file ? req.file.filename : null;
 
-  // Validación simple
   if (!nombre || !id_usuario) {
     return res.status(400).send('Todos los campos obligatorios deben ser completados');
   }
 
   try {
-    const sql = 'INSERT INTO mascotas (id_usuario, nombre, raza, edad, color, foto) VALUES (?, ?, ?, ?, ?, ?)';
-    await db.query(sql, [id_usuario, nombre, raza, edad, color, foto]);
+    // 1. Inserta la mascota
+    const [result] = await db.query(
+      'INSERT INTO mascotas (id_usuario, nombre, raza, edad, color, foto) VALUES (?, ?, ?, ?, ?, ?)',
+      [id_usuario, nombre, raza, edad, color, foto]
+    );
+    const id_mascota = result.insertId;
+
+    // 2. Prepara la información para el QR (puedes personalizar el contenido)
+    const infoQR = `Mascota: ${nombre}\nRaza: ${raza}\nEdad: ${edad}\nColor: ${color}`;
+
+    // 3. Genera el QR como imagen base64
+    const qrDataUrl = await QRCode.toDataURL(infoQR);
+
+    // 4. Guarda el QR en la tabla qr_generados
+    await db.query(
+      'INSERT INTO qr_generados (id_mascota, qr_url) VALUES (?, ?)',
+      [id_mascota, qrDataUrl]
+    );
+
     res.redirect('/dashboard');
   } catch (error) {
     console.error(error);
@@ -77,12 +95,15 @@ exports.verQR = async (req, res) => {
 
   try {
     const [result] = await db.query(
-      'SELECT nombre, qr_url FROM mascotas WHERE id = ? AND id_usuario = ?',
+      `SELECT m.nombre, q.qr_url
+       FROM mascotas m
+       JOIN qr_generados q ON m.id = q.id_mascota
+       WHERE m.id = ? AND m.id_usuario = ?`,
       [id_mascota, id_usuario]
     );
 
     if (result.length === 0) {
-      return res.status(404).send('Mascota no encontrada');
+      return res.status(404).send('Mascota o QR no encontrado');
     }
 
     const mascota = result[0];

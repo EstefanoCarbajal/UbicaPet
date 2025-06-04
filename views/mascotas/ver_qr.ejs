@@ -1,23 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Código QR de <%= mascota.nombre %> - UbicaPet</title>
+  <link rel="stylesheet" href="/css/style.css" />
 
-
-<div class="contenedor">
-  <h2>Código QR de <%= mascota.nombre %></h2>
-  
-  <% if (qrUrl) { %>
-    <img src="<%= qrUrl %>" alt="Código QR de la mascota" class="qr-img" />
-  <% } else { %>
-    <p>No se encontró el código QR para esta mascota.</p>
-  <% } %>
-
-  <a href="/dashboard" class="boton">Volver al Dashboard</a>
-</div>
-
-
-<style>
-  .qr-img {
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-  }
+</head>
+<body>
+  <div class="contenedor">
+    <h2>Código QR de <%= mascota.nombre %></h2>
+      <% if (qrUrl) { %>
+      <img id="qr-img" src="<%= qrUrl %>" alt="Código QR de la mascota" class="qr-img" />
+      <br>
+      <a id="descargarQR" class="boton" download="qr_mascota_<%= mascota.nombre %>.png" href="<%= qrUrl %>">Descargar QR</a>
+    <% } else { %>
+      <p>No se encontró el código QR para esta mascota.</p>
+    <% } %>
+    <br><br><br>
+    <a href="/dashboard" class="boton">Volver al Dashboard</a>
+  </div>
+</body>
+</html>
