@@ -22,30 +22,38 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start; /* Cambia de center a flex-start */
+  min-height: 100vh;           /* Usa min-height en vez de height */
+  height: auto;                /* Permite crecer si hay mucho contenido */
   text-align: center;
+             /* Espacio arriba para que no quede pegado */
+  box-sizing: border-box;
 }
 .fondo {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: fixed;         /* Cambia absolute por fixed */
+  top: 0;
+  left: 0;
+  width: 100vw;            /* Usa 100vw para cubrir todo el viewport */
+  height: 100vh;           /* Usa 100vh para cubrir todo el viewport */
   object-fit: cover;
   z-index: -1;
   opacity: 0.2;
+  pointer-events: none;    /* El fondo no interfiere con los clics */
 }
 
                               /* Login */
 .formulario {
   width: 100%;
   max-width: 400px;
-  min-width: 250px;
+  min-width: unset;            /* Elimina min-width para mejor adaptación */
   height: auto;
   background-color: #fff0d8;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 90px 90px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .logologin {
   width: 220px;
