@@ -17,35 +17,35 @@ input {
   margin-bottom: 15px;
   background-color: #d0dcbf;
 }
-                        /* Fondo */ 
+/* Fondo */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; /* Cambia de center a flex-start */
-  min-height: 100vh;           /* Usa min-height en vez de height */
-  height: auto;                /* Permite crecer si hay mucho contenido */
+  min-height: 100vh; /* Usa min-height en vez de height */
+  height: auto; /* Permite crecer si hay mucho contenido */
   text-align: center;
-             /* Espacio arriba para que no quede pegado */
+  /* Espacio arriba para que no quede pegado */
   box-sizing: border-box;
 }
 .fondo {
-  position: fixed;         /* Cambia absolute por fixed */
+  position: fixed; /* Cambia absolute por fixed */
   top: 0;
   left: 0;
-  width: 100vw;            /* Usa 100vw para cubrir todo el viewport */
-  height: 100vh;           /* Usa 100vh para cubrir todo el viewport */
+  width: 100vw; /* Usa 100vw para cubrir todo el viewport */
+  height: 100vh; /* Usa 100vh para cubrir todo el viewport */
   object-fit: cover;
   z-index: -1;
   opacity: 0.2;
-  pointer-events: none;    /* El fondo no interfiere con los clics */
+  pointer-events: none; /* El fondo no interfiere con los clics */
 }
 
-                              /* Login */
+/* Login */
 .formulario {
   width: 100%;
   max-width: 400px;
-  min-width: unset;            /* Elimina min-width para mejor adaptación */
+  min-width: unset; /* Elimina min-width para mejor adaptación */
   height: auto;
   background-color: #fff0d8;
   padding: 20px;
@@ -56,9 +56,8 @@ input {
   margin-bottom: 40px;
 }
 .logologin {
-  width: 220px;
   height: 170px;
-  margin: 0 auto 10px;  
+  margin: 0 auto 10px;
 }
 .boton {
   background-color: #a9c19f;
@@ -90,12 +89,11 @@ input {
   text-decoration: none;
   font-size: 0.9rem;
   text-decoration: underline;
-  margin : 25px;
+  margin: 25px;
 }
 .crear-cuenta:hover {
   text-decoration: underline;
 }
-
 
 .logo {
   font-size: 3.5rem;
@@ -125,8 +123,6 @@ input {
   margin-top: -10px;
   margin-bottom: 15px;
 }
-
-
 
 .botones-dashboard {
   display: flex;
@@ -159,15 +155,14 @@ input {
   min-width: 220px;
 }
 
-.titulos{
+.titulos {
   font-size: 1.6rem;
   margin-bottom: 30px;
-  margin-block-start: 0.00em;
-  margin-block-end: 0.00em;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
 
-
-                          /* registrar mascota */
+/* registrar mascota */
 input[type="file"] {
   padding: 8px;
   background-color: #f2e9dc;
@@ -177,25 +172,30 @@ input[type="file"] {
   margin-bottom: 15px;
 }
 
-
-                          /* Qr*/
-    .qr-img {
-      width: 200px;
-      height: 200px;
-      margin-top: 20px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 30px;
-    }
-    .contenedor {
-      max-width: 400px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 12px;
-      padding: 30px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      text-align: center;
-    }
+/* Qr*/
+.qr-img {
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+.contenedor {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+.titulomis {
+  margin: 0;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #e58c5f;
+}
