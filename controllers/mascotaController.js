@@ -11,6 +11,10 @@ exports.mostrarFormulario = (req, res) => {
 const QRCode = require('qrcode');
 
 exports.registrarMascota = async (req, res) => {
+  if (!req.session || !req.session.usuario || !req.session.usuario.id) {
+    return res.status(401).send('No autorizado');
+  }
+
   const { nombre, raza, edad, color } = req.body;
   const id_usuario = req.session.usuario.id;
   const foto = req.file ? req.file.filename : null;
