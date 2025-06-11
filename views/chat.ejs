@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat con <%= usuario_destino.nombre %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .chat-container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 24px 16px 16px 16px;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    .chat-mensajes {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 16px;
+      padding-right: 8px;
+      max-height: 350px;
+    }
+    .mensaje {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .mensaje-propio {
+      align-items: flex-end;
+    }
+    .mensaje-burbuja {
+      background: #e58c5f;
+      color: #fff;
+      border-radius: 12px;
+      padding: 8px 14px;
+      max-width: 70%;
+      word-break: break-word;
+      font-size: 1rem;
+      margin-bottom: 2px;
+      display: inline-block;
+    }
+    .mensaje-propio .mensaje-burbuja {
+      background: #2d89ef;
+      color: #fff;
+    }
+    .mensaje-nombre {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2px;
+    }
+    .chat-form {
+      display: flex;
+      gap: 8px;
+    }
+    .chat-input {
+      flex: 1;
+      border-radius: 8px;
+      border: 1.5px solid #2d89ef;
+      padding: 8px 12px;
+      font-size: 1rem;
+    }
+    .chat-btn {
+      background: #2d89ef;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chat-btn:hover {
+      background: #1b5fa7;
+    }
+  </style>
+</head>
+<body class="login">
+  <div class="container">
+    <div class="chat-container">
+      <h2 class="titulo_small">Chat con <%= usuario_destino.nombre %></h2>
+      <div class="chat-mensajes" id="chat-mensajes">
+        <% mensajes.forEach(m => { %>
+          <div class="mensaje <%= m.emisor_id === usuario_actual.id ? 'mensaje-propio' : '' %>">
+            <span class="mensaje-nombre">
+              <%= m.emisor_id === usuario_actual.id ? 'Tú' : m.emisor_nombre %>
+              <span style="font-size:0.8em; color:#bbb;">(<%= m.fecha_hora.toLocaleString ? m.fecha_hora.toLocaleString() : m.fecha_hora %>)</span>
+            </span>
+            <span class="mensaje-burbuja"><%= m.mensaje %></span>
+          </div>
+        <% }) %>
+      </div>
+      <form class="chat-form" action="/chat/enviar" method="POST" autocomplete="off">
+        <input type="hidden" name="conversacion_id" value="<%= conversacion_id %>">
+        <input type="hidden" name="destino_id" value="<%= usuario_destino.id %>">
+        <input type="text" name="mensaje" class="chat-input" placeholder="Escribe tu mensaje..." required autocomplete="off" />
+        <button type="submit" class="chat-btn">Enviar</button>
+      </form>
+      <a href="/chats" class="crear-cuenta" style="margin-top:10px; display:inline-block;">Volver a chats</a>
+    </div>
+  </div>
+  <script>
+    // Scroll automático al último mensaje
+    const chatMensajes = document.getElementById('chat-mensajes');
+    chatMensajes.scrollTop = chatMensajes.scrollHeight;
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UbicaPet - Mascotas Perdidas</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body class="login">
+  <div class="container">
+    <img src="/img/fondo.png" alt="fondo" class="fondo" />
+
+    <div class="formulario">
+      <h2 class="titulo_small">🐾 Mascotas Perdidas Reportadas</h2>
+      <div id="map" class="mapa-leaflet" style="height:350px; margin-bottom:20px;"></div>
+
+      <div class="lista-reportes">
+        <% if (reportes.length === 0) { %>
+          <p>No hay reportes de mascotas perdidas.</p>
+        <% } else { %>
+          <% reportes.forEach(r => { %>
+            <div class="reporte-card">
+              <% if (r.foto) { %>
+                <img src="/uploads/<%= r.foto %>" alt="Foto mascota" class="foto-mascota-mini"/>
+              <% } %>
+              <div>
+                <strong><%= r.nombre_mascota %></strong> <br>
+                <span>Reportado por: <%= r.usuario_nombre %></span><br>
+                <span>Comentarios: <%= r.comentarios %></span><br>
+                <a href="/chat?usuario=<%= r.usuario_id %>" class="boton btn-chat">Contactar por chat</a>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+       <a href="/dashboard" class="crear-cuenta">Volver al inicio</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const reportes = <%- JSON.stringify(reportes)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029')
+  %>;
+    const map = L.map('map').setView([-12.0464, -77.0428], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    reportes.forEach(r => {
+      if (r.ubicacion_lat && r.ubicacion_lng) {
+        const marker = L.marker([r.ubicacion_lat, r.ubicacion_lng]).addTo(map);
+        marker.bindPopup(
+          `<strong>${r.nombre_mascota}</strong><br>
+          Reportado por: ${r.usuario_nombre}<br>
+          <a href="/chat?usuario=${r.usuario_id}" class="btn-chat">Contactar por chat</a>`
+        );
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Historial de Chats</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="login">
+  <div class="container">
+    <img src="/img/fondo.png" alt="fondo" class="fondo" />
+    <div class="formulario">
+      <h2 class="titulo_small">💬 Historial de Chats</h2>
+      <% if (conversaciones.length === 0) { %>
+        <p>No tienes conversaciones aún.</p>
+      <% } else { %>
+        <ul style="list-style:none; padding:0;">
+          <% conversaciones.forEach(c => { %>
+            <li style="margin-bottom:15px;">
+              <a href="/chat?usuario=<%= c.usuario_id %>" class="boton btn-chat">
+                Chat con <%= c.usuario_nombre %>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+      <a href="/dashboard" class="crear-cuenta">Volver al inicio</a>
+    </div>
+  </div>
+</body>
+</html>

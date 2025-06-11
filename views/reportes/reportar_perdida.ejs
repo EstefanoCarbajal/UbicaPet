@@ -3,67 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UbicaPet - Dashboard</title>
+    <title>UbicaPet - Reportar Pérdida</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   </head>
   <body class="login">
     <div class="container">
       <img src="/img/fondo.png" alt="fondo" class="fondo" />
 
-      <h2>📍 Reportar Mascota Perdida</h2>
+      <div class="formulario">
+        <h2 class="titulo_small">📍 Reportar Mascota Perdida</h2>
 
-      <form action="/reportar-perdida" method="POST">
-        <label for="id_mascota">Selecciona una mascota:</label>
-        <select name="id_mascota" required>
-          <% mascotas.forEach(m => { %>
-            <option value="<%= m.id %>"><%= m.nombre %></option>
-          <% }) %>
-        </select>
+        <form action="/reportar-perdida" method="POST">
+          <div class="campo">
+            <label for="id_mascota">Selecciona una mascota:</label>
+            <select name="id_mascota" required>
+              <% mascotas.forEach(m => { %>
+                <option value="<%= m.id %>"><%= m.nombre %></option>
+              <% }) %>
+            </select>
+          </div>
 
-        <label for="map">Selecciona la última ubicación vista:</label>
-        <div id="map" style="height: 400px"></div>
+          <div class="campo">
+            <label for="map">Selecciona la última ubicación vista:</label>
+            <div id="map" class="mapa-leaflet"></div>
+            <input type="hidden" id="ubicacion_lat" name="ubicacion_lat" />
+            <input type="hidden" id="ubicacion_lng" name="ubicacion_lng" />
+          </div>
 
-        <input type="hidden" id="ubicacion_lat" name="ubicacion_lat" />
-        <input type="hidden" id="ubicacion_lng" name="ubicacion_lng" />
+          <div class="campo">
+            <label for="comentarios">Comentarios adicionales:</label>
+            <textarea
+              name="comentarios"
+              placeholder="Ej. Se escapó durante la noche..."
+            ></textarea>
+          </div>
 
-        <label for="comentarios">Comentarios adicionales:</label>
-        <textarea
-          name="comentarios"
-          placeholder="Ej. Se escapó durante la noche..."
-        ></textarea>
-
-        <button type="submit">Reportar pérdida</button>
-      </form>
-
-      <!-- Leaflet CSS y JS -->
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet/dist/leaflet.css"
-      />
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-      <script>
-        const defaultLocation = [-12.0464, -77.0428]; // Lima
-
-        const map = L.map("map").setView(defaultLocation, 15);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution: "&copy; OpenStreetMap contributors",
-        }).addTo(map);
-
-        const marker = L.marker(defaultLocation, { draggable: true }).addTo(
-          map
-        );
-
-        // Inicializar valores
-        document.getElementById("ubicacion_lat").value = defaultLocation[0];
-        document.getElementById("ubicacion_lng").value = defaultLocation[1];
-
-        marker.on("dragend", function () {
-          const pos = marker.getLatLng();
-          document.getElementById("ubicacion_lat").value = pos.lat;
-          document.getElementById("ubicacion_lng").value = pos.lng;
-        });
-      </script>
+          <button class="boton" type="submit">Reportar pérdida</button>
+        </form>
+        <a href="/dashboard" class="crear-cuenta">Volver al inicio</a>
+      </div>
     </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      const defaultLocation = [-12.0464, -77.0428]; // Lima
+
+      const map = L.map("map").setView(defaultLocation, 15);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      const marker = L.marker(defaultLocation, { draggable: true }).addTo(map);
+
+      // Inicializar valores
+      document.getElementById("ubicacion_lat").value = defaultLocation[0];
+      document.getElementById("ubicacion_lng").value = defaultLocation[1];
+
+      marker.on("dragend", function () {
+        const pos = marker.getLatLng();
+        document.getElementById("ubicacion_lat").value = pos.lat;
+        document.getElementById("ubicacion_lng").value = pos.lng;
+      });
+    </script>
   </body>
 </html>

@@ -3,60 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reportar Mascota Perdida - UbicaPet</title>
+  <title>Registrar Mascota - UbicaPet</title>
   <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body class="login">
   <div class="container">
     <img src="/img/fondo.png" alt="fondo" class="fondo" />
     <div class="formulario">
       <img src="/img/pet.png" class="logologin" />
-      <h3>Reportar Mascota Perdida</h3>
+      <h3 >Registrar Mascota</h3>
 
-      <form action="/reportar-perdida" method="POST">
-        <label for="id_mascota">Selecciona tu mascota:</label>
-        <select name="id_mascota" id="id_mascota" required>
-          <% mascotas.forEach(m => { %>
-            <option value="<%= m.id_mascota %>"><%= m.nombre %></option>
-          <% }) %>
-        </select>
+            <form action="/mascotas/registrar" method="POST" enctype="multipart/form-data">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" required />
 
-        <label>Última ubicación vista:</label>
-        <div id="map" style="height: 300px; border-radius: 8px; margin-bottom: 1rem;"></div>
-        <input type="hidden" name="ubicacion_lat" id="ubicacion_lat">
-        <input type="hidden" name="ubicacion_lng" id="ubicacion_lng">
+        <label for="raza">Raza:</label>
+        <input type="text" name="raza" id="raza" />
 
-        <label for="comentarios">Comentarios:</label>
-        <textarea name="comentarios" id="comentarios" placeholder="Ej. Se escapó durante un paseo..." rows="3"></textarea>
+         <label for="edad">Edad:</label>
+        <input type="number" name="edad" id="edad" min="0" />
 
-        <button class="boton" type="submit">Enviar Reporte</button>
+                <label for="color">Color:</label>
+        <input type="text" name="color" id="color" />
+
+        <label for="foto">Foto:</label>
+        <input type="file" name="foto" id="foto" accept="image/*" />
+
+        <button class="boton" type="submit">Guardar Mascota</button>
       </form>
 
       <a href="/dashboard" class="crear-cuenta">Volver al inicio</a>
     </div>
   </div>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    const defaultLocation = [-12.0464, -77.0428]; // Lima por defecto
-    const map = L.map('map').setView(defaultLocation, 15);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    const marker = L.marker(defaultLocation, { draggable: true }).addTo(map);
-
-    document.getElementById('ubicacion_lat').value = defaultLocation[0];
-    document.getElementById('ubicacion_lng').value = defaultLocation[1];
-
-    marker.on('dragend', function () {
-      const pos = marker.getLatLng();
-      document.getElementById('ubicacion_lat').value = pos.lat;
-      document.getElementById('ubicacion_lng').value = pos.lng;
-    });
-  </script>
+  
 </body>
 </html>

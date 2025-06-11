@@ -17,6 +17,12 @@ router.get('/register', (req, res) => {
 // Ruta para manejar el registro de usuarios
 router.post('/register', authController.registerUser);
 
+// Ruta para manejar el cierre de sesión
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/login');
+  });
+});
 
 
 module.exports = router;

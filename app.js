@@ -36,6 +36,8 @@ app.use('/mascotas', require('./routes/mascotas.routes'));
 
 app.use('/', require('./routes/reporte.routes'));
 
+app.use('/', require('./routes/chat.routes'));
+
 
 // Servidor en escucha
 if (require.main === module) {

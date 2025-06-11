@@ -193,9 +193,113 @@ input[type="file"] {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
+
+
 .titulomis {
   margin: 0;
   font-size: 2rem;
   margin-bottom: 30px;
   color: #e58c5f;
+}
+.mapa-leaflet {
+  height: 300px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  /* Puedes agregar ancho si lo necesitas */
+  /* width: 100%; */
+}
+.titulo_small {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #e58c5f;
+}
+.input-estilizado,
+.input-estilizado option {
+  background: #f4f8fb;
+  border: 1.5px solid #2d89ef;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: #222;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.input-estilizado:focus {
+  border-color: #1b5fa7;
+  outline: none;
+  box-shadow: 0 0 0 2px #b3d4fc;
+}
+
+.input-estilizado option {
+  background: #fff;
+  color: #222;
+}
+
+textarea.input-estilizado {
+  min-height: 80px;
+  resize: vertical;
+}
+
+
+
+.reporte-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #f4f8fb;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.foto-mascota-mini {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.btn-chat {
+  display: inline-block;
+  margin-top: 8px;
+  background: #2d89ef;
+  color: #fff !important;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.btn-chat:hover {
+  background: #1b5fa7;
+}
+
+
+
+.mapa-leaflet {
+  height: 350px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+
+
+
+/* Botones de Dashboard */
+.btn-logout {
+  background: #e74c3c;
+  color: #fff !important;
+  border: none;
+  transition: background 0.2s;
+}
+.btn-logout:hover {
+  background: #c0392b;
 }
