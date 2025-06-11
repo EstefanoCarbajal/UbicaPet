@@ -34,6 +34,8 @@ app.use('/', require('./routes/auth.routes'));
 
 app.use('/mascotas', require('./routes/mascotas.routes'));
 
+app.use('/', require('./routes/reporte.routes'));
+
 
 // Servidor en escucha
 if (require.main === module) {

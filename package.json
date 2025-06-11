@@ -32,6 +32,7 @@
     "qrcode": "^1.5.4"
   },
   "devDependencies": {
+    "form-data": "^4.0.3",
     "jest": "^29.7.0",
     "supertest": "^7.1.1"
   }

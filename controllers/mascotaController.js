@@ -15,11 +15,15 @@ exports.registrarMascota = async (req, res) => {
     return res.status(401).send('No autorizado');
   }
 
+  // Si usas multer, req.body puede estar vacío si no es multipart/form-data
+  // Por eso, para los tests, usa .field() en vez de .send() para simular el formulario correctamente
+
   const { nombre, raza, edad, color } = req.body;
   const id_usuario = req.session.usuario.id;
   const foto = req.file ? req.file.filename : null;
 
-  if (!nombre || !id_usuario) {
+  // Validación de campos obligatorios
+  if (!nombre || !raza || !edad || !color || !foto) {
     return res.status(400).send('Todos los campos obligatorios deben ser completados');
   }
 
@@ -171,4 +175,6 @@ exports.guardarEdicionMascota = async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 };
+
+
 
