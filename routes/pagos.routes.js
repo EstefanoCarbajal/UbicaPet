@@ -28,7 +28,7 @@ router.post('/crear-sesion-pago', async (req, res) => {
     line_items,
     mode,
     success_url: 'https://tu-app-production.up.railway.app/pagos-exito',
-    cancel_url: 'https://tu-app-production.up.railway.app/pagos',
+    cancel_url: 'https://ubicapet.up.railway.app/pagos',
   });
 
   res.redirect(303, session.url);
