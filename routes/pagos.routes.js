@@ -27,8 +27,8 @@ router.post('/crear-sesion-pago', async (req, res) => {
     payment_method_types: ['card'],
     line_items,
     mode,
-    success_url: 'http://localhost:3000/pagos-exito',
-    cancel_url: 'http://localhost:3000/pagos',
+    success_url: 'https://tu-app-production.up.railway.app/pagos-exito',
+    cancel_url: 'https://tu-app-production.up.railway.app/pagos',
   });
 
   res.redirect(303, session.url);
