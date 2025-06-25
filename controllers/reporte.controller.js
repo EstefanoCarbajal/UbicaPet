@@ -56,3 +56,12 @@ exports.mostrarReportesEncontradas = async (req, res) => {
 
   res.render('reportes/reportes_encontradas', { reportes });
 };
+
+
+
+
+
+
+
+
+

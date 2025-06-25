@@ -38,6 +38,8 @@ app.use('/', require('./routes/reporte.routes'));
 
 app.use('/', require('./routes/chat.routes'));
 
+app.use('/', require('./routes/pagos.routes'));
+
 
 // Servidor en escucha
 if (require.main === module) {

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>UbicaPet - Pagos</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .opciones-pago {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .opcion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: #f4f8fb;
+      border-radius: 10px;
+      padding: 24px 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      margin-bottom: 10px;
+    }
+    .opcion:last-child { margin-bottom: 0; }
+    .opcion h3 {
+      color: #e58c5f;
+      margin-bottom: 6px;
+    }
+    .boton-pago {
+      background: #2d89ef;
+      color: #fff !important;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .boton-pago:hover { background: #1b5fa7; }
+  </style>
+</head>
+<body class="login">
+  <div class="container">
+    <img src="/img/fondo.png" alt="fondo" class="fondo" />
+    <div class="formulario">
+      <h2 class="titulo_small">💳 Opciones de Pago</h2>
+      <div class="opciones-pago">
+        <div class="opcion">
+          <h2>Obtener plan premium</h2>
+          <h3>S/. 10.00 PEN</h3>
+          <p>Accede a funciones exclusivas para tu cuenta.</p>
+          <form action="/crear-sesion-pago" method="POST">
+            <input type="hidden" name="tipo" value="premium">
+            <button type="submit" class="boton boton-pago">Pagar Premium</button>
+          </form>
+        </div>
+        <div class="opcion">
+          <h2>Pagar publicidad</h2>
+          <h3>S/. 200 PEN</h3>
+          <p>Promociona tu mascota o tu anuncio en UbicaPet.</p>
+          <form action="/crear-sesion-pago" method="POST">
+            <input type="hidden" name="tipo" value="publicidad">
+            <button type="submit" class="boton boton-pago">Pagar Publicidad</button>
+          </form>
+        </div>
+        <div class="opcion">
+          <h3>Donar</h3>
+          <p>Apoya el proyecto UbicaPet con una donación.</p>
+          <form action="/crear-sesion-pago" method="POST" style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+            <input type="hidden" name="tipo" value="donacion">
+            <input 
+              type="number" 
+              name="monto" 
+              min="1" 
+              step="0.01" 
+              placeholder="Monto (S/.)" 
+              required 
+              style="padding:8px 12px; border-radius:8px; border:1.5px solid #2d89ef; font-size:1rem; width:140px; text-align:center;"
+            >
+            <button type="submit" class="boton boton-pago">Donar</button>
+          </form>
+        </div>
+      </div>
+      <a href="/dashboard" class="crear-cuenta" style="margin-top:18px; display:inline-block;">Volver al inicio</a>
+    </div>
+  </div>
+</body>
+</html>
