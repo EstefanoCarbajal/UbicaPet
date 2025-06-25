@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfil de <%= usuario.nombre %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="login">
+  <div class="container">
+    <img src="/img/fondo.png" alt="fondo" class="fondo" />
+    <div class="formulario">
+      <h2 class="titulo_small">👤 Perfil de <%= usuario.nombre %></h2>
+      <p><strong>Email:</strong> <%= usuario.email %></p>
+      <h3 style="margin-top:20px;">Mis reportes de mascotas perdidas</h3>
+      <% if (reportes.length === 0) { %>
+        <p>No has reportado mascotas perdidas.</p>
+      <% } else { %>
+        <ul style="list-style:none; padding:0;">
+          <% reportes.forEach(r => { %>
+            <li style="margin-bottom:15px;">
+              <% if (r.foto) { %>
+                <img src="/uploads/<%= r.foto %>" alt="Foto mascota" style="width:60px; border-radius:8px; margin-right:8px;">
+              <% } %>
+              <strong><%= r.nombre_mascota %></strong> - <%= r.comentarios %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+      <a href="/dashboard" class="crear-cuenta" style="margin-top:18px; display:inline-block;">Volver al inicio</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -13,7 +13,9 @@
     <div class="formulario">
       
         <img src="/img/logo.png" class="logologin" />
-      <div class="titulos">¡Bienvenido, <%= nombre %>!</> </div>
+      <div class="titulos">
+        ¡Bienvenido, <a href="/perfil" class="link-perfil"><%= nombre %></a>!
+      </div>
         
       <div class="botones-dashboard">
         <a href="./mascotas/registrar" class="boton dashboard-btn">Registrar Mascota</a>

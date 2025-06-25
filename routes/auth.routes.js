@@ -24,5 +24,6 @@ router.get('/logout', (req, res) => {
   });
 });
 
+router.get('/perfil', authController.mostrarPerfil);
 
 module.exports = router;
