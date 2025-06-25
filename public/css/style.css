@@ -303,3 +303,10 @@ textarea.input-estilizado {
 .btn-logout:hover {
   background: #c0392b;
 }
+
+
+a.link-perfil {
+  color: #c8aaa2;
+  text-decoration: none;
+  font-weight: 500;
+}
