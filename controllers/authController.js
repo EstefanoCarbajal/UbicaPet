@@ -76,7 +76,21 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+exports.mostrarPerfil = async (req, res) => {
+  const usuario = req.session.usuario;
+  if (!usuario) return res.redirect('/login');
 
+  // Obtén los reportes del usuario
+  const [reportes] = await db.query(
+    `SELECT r.*, m.nombre AS nombre_mascota, m.foto
+     FROM reportes_perdida r
+     JOIN mascotas m ON r.id_mascota = m.id
+     WHERE m.id_usuario = ?`,
+    [usuario.id]
+  );
+
+  res.render('perfil', { usuario, reportes });
+};
 
 
 
